@@ -1,0 +1,24 @@
+name: My First Robot Guard
+
+# Trigger: When do we run?
+on: [push]
+
+# Jobs: What do we do?
+jobs:
+  check-quality:
+    runs-on: ubuntu-latest  # The computer GitHub lends you
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3 # Downloads your code to the robot
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install testing tools
+        run: pip install pytest
+
+      - name: Run the Inspector
+        run: pytest test_app.py
