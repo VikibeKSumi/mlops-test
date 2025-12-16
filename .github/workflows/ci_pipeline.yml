@@ -1,24 +1,30 @@
-name: My First Robot Guard
+name: CI + Docker Build
 
-# Trigger: When do we run?
 on: [push]
 
-# Jobs: What do we do?
 jobs:
-  check-quality:
-    runs-on: ubuntu-latest  # The computer GitHub lends you
+  build-and-test:
+    runs-on: ubuntu-latest
 
     steps:
+      # 1. Get the code
       - name: Check out code
-        uses: actions/checkout@v3 # Downloads your code to the robot
+        uses: actions/checkout@v3
 
+      # 2. Set up Python (for the tests)
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: Install testing tools
+      # 3. Install testing tools
+      - name: Install dependencies
         run: pip install pytest
 
-      - name: Run the Inspector
+      # 4. Run the Inspector (Test)
+      - name: Run Tests
         run: pytest test_app.py
+
+      # 5. THE NEW STEP: Build the Docker Container
+      - name: Build Docker Image
+        run: docker build -t my-ai-app .
