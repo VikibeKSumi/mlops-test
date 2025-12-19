@@ -16,7 +16,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install pytest
+        run: pip install pytest fastapi uvicorn httpx
 
       - name: Run Tests
         run: pytest test_app.py
