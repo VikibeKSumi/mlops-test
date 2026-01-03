@@ -35,4 +35,4 @@ jobs:
           context: .
           push: true
           # REPLACE 'your-username' below with your actual Docker Hub username!
-          tags: vikisumi/mlops-app:latest
+          tags: vikisumi/mlops-test-app:latest
